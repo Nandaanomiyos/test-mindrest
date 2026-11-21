@@ -59,9 +59,18 @@ body.in-camp{overflow:hidden;background:#120e24}
 body.in-camp header,body.in-camp footer,body.in-camp #bar{display:none!important}
 #unggun{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;padding:0;margin:0;background:#120e24;z-index:50;user-select:none;-webkit-user-select:none;touch-action:none}
 #cv{display:block;width:100%;height:100%;image-rendering:pixelated;background:#151b2b}
+
+/* Layer overlay tajam (nama karakter, balon kata, teks kayu) */
+#campLabels{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.c-tag{position:absolute;transform:translate(-50%,-100%);font:700 12px/1.2 'Bricolage Grotesque',sans-serif;color:#fff;background:rgba(18,14,38,.86);border:1px solid rgba(255,255,255,.22);padding:3px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.45);letter-spacing:.1px}
+.c-tag.me{background:var(--butter);color:#2b1f4a;border-color:#fff}
+.c-tag.npc{background:rgba(58,42,92,.92);color:#ffd98a;border-color:rgba(255,217,138,.45)}
+.c-bubble{position:absolute;transform:translate(-50%,-100%);font:700 13px/1.3 'Bricolage Grotesque',sans-serif;color:#2b1f4a;background:#fff6e8;border:2px solid #2b1f4a;padding:4px 10px;border-radius:12px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.c-wood-txt{position:absolute;transform:translate(-50%,-100%);font:700 16px/1 Caveat,cursive;color:#ffd98a;text-shadow:0 2px 6px rgba(0,0,0,.9);white-space:nowrap}
+
 .camp-hud-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none;z-index:10;flex-wrap:wrap}
 .camp-hud-top > *{pointer-events:auto}
-.camp-pill{background:rgba(20,15,40,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:16px;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.camp-pill{background:rgba(20,15,40,.84);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:16px;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .camp-pill input{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:6px 12px;font:600 13px 'Bricolage Grotesque';width:120px}
 .camp-pill input::placeholder{color:rgba(255,255,255,.55)}
 .pick{background:rgba(255,255,255,.1);border:2px solid transparent;border-radius:10px;padding:3px 6px;cursor:pointer;color:#fff;font:600 11px 'Bricolage Grotesque';display:flex;align-items:center;gap:4px}
@@ -70,7 +79,7 @@ body.in-camp header,body.in-camp footer,body.in-camp #bar{display:none!important
 .camp-status{font-size:12px;color:var(--butter);font-weight:600;padding:0 4px}
 
 /* dialog NPC / interaksi */
-.camp-dialog{position:absolute;top:76px;left:50%;transform:translateX(-50%);width:min(440px,90vw);background:rgba(24,18,48,.94);border:2px solid var(--butter);border-radius:18px;padding:14px 18px;color:#fff;z-index:20;box-shadow:0 16px 40px rgba(0,0,0,.6);animation:pop .18s ease-out}
+.camp-dialog{position:absolute;top:86px;left:50%;transform:translateX(-50%);width:min(440px,90vw);background:rgba(24,18,48,.95);border:2px solid var(--butter);border-radius:18px;padding:14px 18px;color:#fff;z-index:20;box-shadow:0 16px 40px rgba(0,0,0,.6);animation:pop .18s ease-out}
 @keyframes pop{from{transform:translate(-50%,-8px) scale(.96);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
 .camp-dialog b{color:var(--butter);font-size:15px;display:block;margin-bottom:4px}
 .camp-dialog p{color:#f2ebff;font-size:14px;margin:0 0 10px;line-height:1.45}
@@ -86,6 +95,7 @@ body.in-camp header,body.in-camp footer,body.in-camp #bar{display:none!important
 .act-btn:active{transform:translateY(2px)}
 .act-btn.talk{background:var(--butter);color:#2b1f4a}
 .act-btn.talk:disabled{opacity:.45;cursor:default}
+.act-btn.tent{background:#9fd0ff;color:#1b1532}
 .act-btn.hug{background:var(--rose);color:#fff}
 
 /* bar lempar beban bawah */
@@ -151,7 +161,7 @@ footer{padding:34px 0 60px;color:#6a4fb0;font-size:15px;border-top:1px solid rgb
 <div class="tiles">
 <a class="tile" href="#napas" style="--c:#ffb383"><div class="ic" data-i="napas"></div><b>Napas 4-7-8</b><span>Dial berjarum untuk menenangkan panik.</span></a>
 <a class="tile" href="#radio" style="--c:#ffd98a"><div class="ic" data-i="radio"></div><b>Radio malam</b><span>13 suara lembut yang bisa ditumpuk.</span></a>
-<a class="tile" href="#unggun" style="--c:#e8728f"><div class="ic" data-i="unggun"></div><b>Api unggun</b><span>Jelajahi hutan piksel, sapa NPC, dan bakar bebanmu.</span><em>Fullscreen</em></a>
+<a class="tile" href="#unggun" style="--c:#e8728f"><div class="ic" data-i="unggun"></div><b>Api unggun</b><span>Jelajahi pegunungan piksel, masuk tenda, dan bakar bebanmu.</span><em>Fullscreen</em></a>
 <a class="tile" href="#ngobrol" style="--c:#b9a5e8"><div class="ic" data-i="ngobrol"></div><b>Ngobrol bareng</b><span>Ruang suara maksimal 4 orang.</span><em>Online</em></a>
 <a class="tile" href="#buang" style="--c:#ff9aa2"><div class="ic" data-i="buang"></div><b>Buang pikiran</b><span>Tulis di kertas, lalu bakar sampai jadi abu.</span></a>
 <a class="tile" href="#p3k" style="--c:#9fd0ff"><div class="ic" data-i="p3k"></div><b>P3K mental</b><span>Penenang kecil dan bantuan darurat.</span></a>
@@ -190,7 +200,8 @@ footer{padding:34px 0 60px;color:#6a4fb0;font-size:15px;border-top:1px solid rgb
 
 <!-- API UNGGUN FULLSCREEN -->
 <section class="off" id="unggun">
-  <canvas id="cv" tabindex="0" role="application" aria-label="Api unggun piksel layar penuh"></canvas>
+  <canvas id="cv" tabindex="0" role="application" aria-label="Api unggun pegunungan piksel layar penuh"></canvas>
+  <div id="campLabels"></div>
 
   <div class="camp-hud-top">
     <div class="camp-pill">
@@ -199,7 +210,7 @@ footer{padding:34px 0 60px;color:#6a4fb0;font-size:15px;border-top:1px solid rgb
       <div id="picks" style="display:flex;gap:4px;flex-wrap:wrap"></div>
     </div>
     <div class="camp-pill">
-      <span class="camp-status" id="status">Mode Offline (Menunggu Supabase)</span>
+      <span class="camp-status" id="status">Mode Offline · Puncak Pinus</span>
     </div>
   </div>
 
@@ -217,12 +228,13 @@ footer{padding:34px 0 60px;color:#6a4fb0;font-size:15px;border-top:1px solid rgb
       <div class="joy-stick" id="joyStick"></div>
     </div>
     <div class="act-btns">
+      <button class="act-btn tent off" id="btnTent">⛺ Masuk Tenda</button>
       <button class="act-btn talk" id="btnInteract" disabled>💬 Interaksi</button>
       <button class="act-btn hug" id="hug">🤍 Kirim Peluk</button>
     </div>
   </div>
 
-  <div class="camp-bottom">
+  <div class="camp-bottom" id="campBottom">
     <div class="camp-bar">
       <input type="text" id="wood" maxlength="80" placeholder="Tulis beban pikiranmu, lalu lempar ke api unggun…" aria-label="Beban pikiran">
       <button class="btn" id="throw">🔥 Lempar</button>
@@ -462,10 +474,11 @@ $('burn').onclick=()=>{
   })(s0);
 };
 
-// ===== Api Unggun Fullscreen + Map Luas + Analog + Interaksi NPC & Player =====
-const c=$('cv'),g=c.getContext('2d');
-const WORLD_W=960,WORLD_H=540;
-const FIRE_X=480,FIRE_Y=330;
+// ===== Api Unggun Pegunungan Fullscreen + Tenda + Anti-Auto-Walk + Nama Tajam =====
+const c=$('cv'),g=c.getContext('2d'),labelLayer=$('campLabels');
+const WORLD_W=1020,WORLD_H=560;
+const FIRE_X=510,FIRE_Y=345;
+const TENT_DOOR={x:790,y:285}; // Pintu masuk tenda di bukit kanan
 
 const CH={
   kucing:['#ffb383','#ffe6cf','p','a','Kucing'],
@@ -507,35 +520,52 @@ function drawChar(g,k,x,y,dir,st){
 const sv=(()=>{try{return JSON.parse(localStorage.getItem('nanda')||'{}')}catch(e){return{}}})();
 const myId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Math.random());
 const cl=(v,a,b)=>Math.max(a,Math.min(b,+v||0));
-const me={id:myId,name:(sv.n||'Tamu'+(10+Math.random()*89|0)),ch:CH[sv.c]?sv.c:'kucing',x:FIRE_X-55,y:FIRE_Y+28,tx:FIRE_X-55,ty:FIRE_Y+28,dir:1,mv:0,bubble:'',bubbleT:0};
+const me={
+  id:myId,
+  name:(sv.n||'Tamu'+(10+Math.random()*89|0)),
+  ch:CH[sv.c]?sv.c:'kucing',
+  room:'outside', // 'outside' atau 'tent'
+  x:FIRE_X-55,y:FIRE_Y+28,
+  dir:1,mv:0,bubble:'',bubbleT:0
+};
 const ents={};ents[myId]=me;
 
+// NPC di luar & di dalam tenda
 const NPCS=[
   {
-    id:'npc_milo',isNpc:true,name:'Milo (Penjaga Api)',ch:'kucing',
-    x:FIRE_X+52,y:FIRE_Y+18,homeX:FIRE_X+52,homeY:FIRE_Y+18,dir:-1,mv:0,bubble:'',bubbleT:0,
+    id:'npc_milo',isNpc:true,room:'outside',name:'Milo (Penjaga Api)',ch:'kucing',
+    x:FIRE_X+54,y:FIRE_Y+18,homeX:FIRE_X+54,homeY:FIRE_Y+18,dir:-1,mv:0,bubble:'',bubbleT:0,
     lines:[
-      'Meow~ Selamat datang di perkemahan malam. Kayu bakar selalu hangat untukmu.',
-      'Kalau kepalamu terasa penuh, tulis saja di bawah lalu lempar ke api unggun.',
-      'Kamu juga bisa jalan ke dermaga di sebelah kiri atau tenda baca di kanan.'
+      'Meow~ Selamat datang di lereng gunung malam ini. Udara dingin, tapi api unggunnya hangat.',
+      'Kalau kepalamu ramai, tulis saja bebanmu di bawah lalu lempar ke api unggun.',
+      'Coba juga jalan ke tenda di sebelah kanan, kamu bisa masuk ke dalam dan ngobrol!'
     ]
   },
   {
-    id:'npc_bima',isNpc:true,name:'Bima (Santai di Dermaga)',ch:'capybara',
-    x:165,y:395,homeX:165,homeY:395,dir:1,mv:0,bubble:'',bubbleT:0,
+    id:'npc_bima',isNpc:true,room:'outside',name:'Bima (Santai di Telaga)',ch:'capybara',
+    x:165,y:405,homeX:165,homeY:405,dir:1,mv:0,bubble:'',bubbleT:0,
     lines:[
-      'Air danau malam ini tenang sekali... cocok buat narik napas pelan-pelan.',
-      'Kadang kita nggak perlu langsung menyelesaikan semua masalah malam ini.',
-      'Duduk saja sebentar di dermaga ini, tidak ada yang mengejarmu.'
+      'Telaga pegunungan malam ini tenang sekali... pantulan bintangnya jelas.',
+      'Kadang kita nggak perlu langsung menyelesaikan semua hal malam ini.',
+      'Duduk saja sebentar di dermaga kayu ini, tarik napas pelan-pelan.'
     ]
   },
   {
-    id:'npc_luna',isNpc:true,name:'Luna (Pengamat Bintang)',ch:'hantu',
-    x:785,y:295,homeX:785,homeY:295,dir:-1,mv:0,bubble:'',bubbleT:0,
+    id:'npc_luna',isNpc:true,room:'outside',name:'Luna (Pengamat Puncak)',ch:'hantu',
+    x:730,y:292,homeX:730,homeY:292,dir:-1,mv:0,bubble:'',bubbleT:0,
     lines:[
-      'Hoo~ Dari bukit tenda ini bintang-bintang terlihat lebih jelas.',
-      'Tahukah kamu? Cahaya bintang yang kita lihat sekarang butuh bertahun-tahun untuk sampai.',
-      'Pelan-pelan saja berproses, seperti langit malam yang selalu punya ruang.'
+      'Hoo~ Di sebelahku ini tenda hangat. Dekati pintunya lalu tekan "Masuk Tenda".',
+      'Dari ketinggian gunung ini, masalah yang terasa besar sering tampak lebih kecil.',
+      'Pelan-pelan saja berproses ya.'
+    ]
+  },
+  {
+    id:'npc_raka',isNpc:true,room:'tent',name:'Kak Raka (Penjaga Tenda)',ch:'rubah',
+    x:195,y:122,homeX:195,homeY:122,dir:-1,mv:0,bubble:'',bubbleT:0,
+    lines:[
+      'Halo! Selamat datang di dalam tenda. Di sini hangat dan bebas dari angin gunung.',
+      'Kalau ada pengunjung lain yang ikut masuk tenda, kalian bisa saling menyapa di sini.',
+      'Ambil bantal dudukmu dan istirahatlah sejenak.'
     ]
   }
 ];
@@ -543,12 +573,12 @@ NPCS.forEach(n=>ents[n.id]=n);
 
 let ch=null,subscribed=false,peers=0,heat=1,fp=[],hearts=[],logs=[],fr=0,lastSend=0,wasMv=0,tkT;
 let camX=FIRE_X-160,camY=FIRE_Y-90,viewW=320,viewH=180;
-let activeTarget=null,dlgLines=[],dlgIdx=0;
+let activeTarget=null,nearTentDoor=false,dlgLines=[],dlgIdx=0;
 const st=$('status');
 
 function resizeCamp(){
   const w=window.innerWidth,h=window.innerHeight;
-  const scale=w<640?2.4:3;
+  const scale=w<640?2.3:2.8;
   viewW=Math.max(260,Math.floor(w/scale));
   viewH=Math.max(180,Math.floor(h/scale));
   c.width=viewW;
@@ -558,7 +588,7 @@ window.addEventListener('resize',resizeCamp);
 resizeCamp();
 
 function save(){try{localStorage.setItem('nanda',JSON.stringify({n:me.name,c:me.ch}))}catch(e){}}
-function track(){if(ch&&subscribed)ch.track({name:me.name,ch:me.ch,x:me.x|0,y:me.y|0})}
+function track(){if(ch&&subscribed)ch.track({name:me.name,ch:me.ch,room:me.room,x:me.x|0,y:me.y|0})}
 function send(ev,pl){if(ch&&subscribed)ch.send({type:'broadcast',event:ev,payload:pl})}
 
 $('nm').value=me.name;
@@ -572,23 +602,21 @@ Object.keys(CH).forEach(k=>{
   $('picks').appendChild(b);
 });
 
+// Kontrol Keyboard (TIDAK ADA auto-walk saat tap layar!)
 const keys=new Set(),KS=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'],kn=ev=>ev.key.length>1?ev.key:ev.key.toLowerCase();
-c.onpointerdown=ev=>{
-  c.focus();
-  const r=c.getBoundingClientRect();
-  const wx=camX+(ev.clientX-r.left)/r.width*viewW;
-  const wy=camY+(ev.clientY-r.top)/r.height*viewH;
-  me.tx=cl(wx,24,WORLD_W-24);
-  me.ty=cl(wy,225,WORLD_H-24);
-};
+c.onpointerdown=()=>c.focus();
 c.onkeydown=ev=>{
   const k=kn(ev);
   if(KS.includes(k)){keys.add(k);ev.preventDefault()}
-  if(k==='e'||k==='Enter'){if(!$('btnInteract').disabled)$('btnInteract').click()}
+  if(k==='e'||k==='Enter'){
+    if(!$('btnTent').classList.contains('off'))$('btnTent').click();
+    else if(!$('btnInteract').disabled)$('btnInteract').click();
+  }
 };
 c.onkeyup=ev=>keys.delete(kn(ev));
 c.onblur=()=>keys.clear();
 
+// Analog Virtual (Kiri-Kanan & 360°)
 const joyBase=$('joyBase'),joyStick=$('joyStick');
 let joyVec={x:0,y:0},joyActive=false,joyId=null;
 function updateJoy(clientX,clientY){
@@ -620,12 +648,16 @@ function resetJoy(ev){
 joyBase.addEventListener('pointerup',resetJoy);
 joyBase.addEventListener('pointercancel',resetJoy);
 
-function isBlocked(nx,ny){
+function isBlockedOutside(nx,ny){
+  // Api unggun tengah
   if(Math.hypot(nx-FIRE_X,ny-FIRE_Y)<28)return true;
-  if(nx<220&&ny>360){
-    const onDock=(nx>=105&&nx<=215&&ny>=375&&ny<=425);
+  // Telaga kiri bawah (kecuali dermaga kayu)
+  if(nx<225&&ny>370){
+    const onDock=(nx>=105&&nx<=220&&ny>=385&&ny<=435);
     if(!onDock)return true;
   }
+  // Badan tenda (pintu depan di x: 772..808, y: 278..295 tetap bisa didekati)
+  if(nx>748&&nx<832&&ny>238&&ny<276)return true;
   return false;
 }
 
@@ -637,34 +669,37 @@ function stepMe(){
   }
   if(dx||dy){
     const len=Math.hypot(dx,dy)||1;
-    const spd=1.65;
-    const nx=cl(me.x+(dx/len)*spd,24,WORLD_W-24);
-    const ny=cl(me.y+(dy/len)*spd,225,WORLD_H-24);
-    if(!isBlocked(nx,ny)){me.x=nx;me.y=ny}
-    me.tx=me.x;me.ty=me.y;
+    const spd=me.room==='tent'?1.35:1.65;
+    if(me.room==='outside'){
+      const nx=cl(me.x+(dx/len)*spd,24,WORLD_W-24);
+      const ny=cl(me.y+(dy/len)*spd,232,WORLD_H-24);
+      if(!isBlockedOutside(nx,ny)){me.x=nx;me.y=ny}
+    }else{
+      // Batas gerak di dalam interior tenda (ruang 320x200)
+      const nx=cl(me.x+(dx/len)*spd,72,248);
+      const ny=cl(me.y+(dy/len)*spd,96,172);
+      // Lentera tengah tenda
+      if(Math.hypot(nx-160,ny-132)>16){me.x=nx;me.y=ny}
+    }
     if(Math.abs(dx)>0.15)me.dir=dx>0?1:-1;
     me.mv++;
-    return;
+  }else{
+    me.mv=0;
   }
-  const ax=me.tx-me.x,ay=me.ty-me.y,d=Math.hypot(ax,ay);
-  if(d>1.5){
-    const v=Math.min(1.5,d),nx=me.x+ax/d*v,ny=me.y+ay/d*v;
-    if(isBlocked(nx,ny)){me.tx=me.x;me.ty=me.y;me.mv=0}
-    else{me.x=nx;me.y=ny;if(Math.abs(ax)>.4)me.dir=ax>0?1:-1;me.mv++}
-  }else me.mv=0;
 }
 
 function stepNpcs(){
   NPCS.forEach((n,idx)=>{
-    if(fr%180===(idx*60)){
+    if(fr%200===(idx*65)){
       const ang=Math.random()*Math.PI*2;
-      n.tx=cl(n.homeX+Math.cos(ang)*26,30,WORLD_W-30);
-      n.ty=cl(n.homeY+Math.sin(ang)*16,230,WORLD_H-30);
+      const rad=n.room==='tent'?14:24;
+      n.tx=n.homeX+Math.cos(ang)*rad;
+      n.ty=n.homeY+Math.sin(ang)*(rad*0.6);
     }
     if(n.tx!=null){
       const dx=n.tx-n.x,dy=n.ty-n.y,d=Math.hypot(dx,dy);
       if(d>1){
-        n.x+=dx/d*0.45;n.y+=dy/d*0.45;
+        n.x+=dx/d*0.4;n.y+=dy/d*0.4;
         if(Math.abs(dx)>0.2)n.dir=dx>0?1:-1;
         n.mv++;
       }else{n.mv=0;n.tx=null}
@@ -672,10 +707,51 @@ function stepNpcs(){
   });
 }
 
+// Masuk / Keluar Tenda
+function enterTent(){
+  me.room='tent';
+  me.x=160;me.y=162;me.dir=1;me.mv=0;
+  $('dialogBox').classList.add('off');
+  $('campBottom').classList.add('off');
+  setPeers();
+  track();
+  send('move',{id:myId,room:me.room,x:me.x|0,y:me.y|0,dir:me.dir});
+}
+function exitTent(){
+  me.room='outside';
+  me.x=TENT_DOOR.x;me.y=TENT_DOOR.y+12;me.dir=1;me.mv=0;
+  $('dialogBox').classList.add('off');
+  $('campBottom').classList.remove('off');
+  setPeers();
+  track();
+  send('move',{id:myId,room:me.room,x:me.x|0,y:me.y|0,dir:me.dir});
+}
+
+$('btnTent').onclick=()=>{
+  if(me.room==='outside'&&nearTentDoor)enterTent();
+  else if(me.room==='tent')exitTent();
+};
+
+// Cek entitas terdekat & pintu tenda
 function checkNearby(){
+  const tentBtn=$('btnTent');
+  if(me.room==='outside'){
+    nearTentDoor=Math.hypot(me.x-TENT_DOOR.x,me.y-TENT_DOOR.y)<36;
+    if(nearTentDoor){
+      tentBtn.classList.remove('off');
+      tentBtn.textContent='⛺ Masuk Tenda';
+    }else{
+      tentBtn.classList.add('off');
+    }
+  }else{
+    nearTentDoor=false;
+    tentBtn.classList.remove('off');
+    tentBtn.textContent='🚪 Keluar Tenda';
+  }
+
   let best=null,bestD=48;
   Object.values(ents).forEach(e=>{
-    if(e.id===myId)return;
+    if(e.id===myId||e.room!==me.room)return;
     const d=Math.hypot(e.x-me.x,e.y-me.y);
     if(d<bestD){bestD=d;best=e}
   });
@@ -701,7 +777,7 @@ $('btnInteract').onclick=()=>{
     $('dialogBox').classList.remove('off');
     hug(activeTarget);
   }else{
-    const cheers=['Halo! 👋','Semangat ya! ✨','Peluk hangat 🤍','Duduk bareng yuk 🔥'];
+    const cheers=['Halo! 👋','Semangat ya! ✨','Peluk hangat 🤍','Ngobrol santai yuk ☕'];
     const msg=cheers[Math.random()*cheers.length|0];
     me.bubble=msg;me.bubbleT=180;
     hug(activeTarget);hug(me);
@@ -718,33 +794,374 @@ function throwWood(e,text){
   logs.push({x0:e.x,y0:e.y-14,t:0,text:text||''});
 }
 function hug(e){
-  for(let i=0;i<3;i++)hearts.push({x:e.x+(i-1)*6,y:e.y-28-i*4,l:90});
+  for(let i=0;i<3;i++)hearts.push({x:e.x+(i-1)*6,y:e.y-28-i*4,l:90,room:e.room});
 }
 
-const stars=Array.from({length:160},()=>[Math.random()*WORLD_W|0,Math.random()*185|0,Math.random()*6]);
-const ridge=Array.from({length:241},(_,i)=>145+Math.sin(i*.28)*14+Math.sin(i*.09+1)*16|0);
-const trees=Array.from({length:48},(_,i)=>[i*20+Math.random()*10|0,205+Math.random()*12|0,14+Math.random()*14|0]);
-const ff=Array.from({length:28},()=>({x:Math.random()*WORLD_W,y:210+Math.random()*290,p:Math.random()*6}));
+// Elemen pemandangan pegunungan malam
+const stars=Array.from({length:190},()=>[Math.random()*WORLD_W|0,Math.random()*175|0,Math.random()*6]);
+const clouds=Array.from({length:7},(_,i)=>({x:i*160,y:34+(i%3)*22,w:42+(i%3)*18,spd:0.06+(i%2)*0.04}));
+
+// Puncak-puncak gunung tajam berlapis
+const farPeaks=[
+  [0,190],[90,95],[195,165],[310,72],[440,160],[560,64],[690,155],[815,82],[940,160],[1020,115],[1020,220],[0,220]
+];
+const nearPeaks=[
+  [0,215],[65,140],[160,195],[260,118],[375,190],[495,112],[615,188],[740,115],[865,185],[960,130],[1020,195],[1020,230],[0,230]
+];
+
+// Pohon pinus bertingkat di lereng gunung
+const pines=[
+  [48,228,26],[92,235,30],[138,224,24],[245,232,28],[295,222,22],[355,236,32],
+  [425,225,25],[605,226,27],[665,234,30],[885,228,28],[935,236,32],[982,224,25],
+  [42,315,30],[275,465,28],[680,475,30],[945,390,32],[910,495,28]
+];
+
+// Batu gunung & semak rumput di tanah
+const rocks=[
+  [260,295],[340,420],[430,275],[595,285],[640,415],[845,355],[310,505],[740,490]
+];
+const tufts=Array.from({length:85},()=>[30+Math.random()*(WORLD_W-60)|0,240+Math.random()*(WORLD_H-260)|0]);
+const ff=Array.from({length:30},()=>({x:Math.random()*WORLD_W,y:225+Math.random()*300,p:Math.random()*6}));
+
+function drawPine(x,y,h){
+  // Batang
+  g.fillStyle='#2b1d19';
+  g.fillRect((x-2)|0,(y-5)|0,4,6);
+  // 3 tingkat daun pinus
+  const tiers=[
+    {top:y-h,bot:y-h*0.55,w:h*0.36,col:'#1a3636'},
+    {top:y-h*0.72,bot:y-h*0.28,w:h*0.5,col:'#142b2e'},
+    {top:y-h*0.45,bot:y-4,w:h*0.64,col:'#0f2126'}
+  ];
+  tiers.forEach(t=>{
+    g.fillStyle=t.col;
+    g.beginPath();
+    g.moveTo(x,t.top);
+    g.lineTo(x-t.w,t.bot);
+    g.lineTo(x+t.w,t.bot);
+    g.closePath();
+    g.fill();
+  });
+}
 
 function glow(){
-  const r=36+heat*14;
+  const r=42+heat*15;
   for(let k=5;k>0;k--){
-    g.globalAlpha=.055;g.fillStyle='#ffb383';
+    g.globalAlpha=.06;g.fillStyle='#ffb383';
     const q=r*k/5;
     g.fillRect(FIRE_X-q,FIRE_Y-q*.65,q*2,q*1.2);
   }
   g.globalAlpha=1;
 }
 
-function drawBubble(text,x,y,isWarm){
-  g.font='bold 7px sans-serif';
-  const tw=g.measureText(text).width;
-  const bw=tw+10,bh=13;
-  const bx=(x-bw/2)|0,by=(y-bh)|0;
-  g.fillStyle=isWarm?'rgba(255,217,138,.95)':'rgba(27,21,50,.85)';
-  g.fillRect(bx,by,bw,bh);
-  g.fillStyle=isWarm?'#2b1f4a':'#ffffff';
-  g.fillText(text,bx+5,by+9);
+// Render label tajam di atas kanvas (tidak burik!)
+function syncSharpLabels(offsetX,offsetY,scaleX,scaleY){
+  const activeNodes=[];
+  const addNode=(cls,text,wx,wy)=>{
+    const sx=(wx-offsetX)*scaleX;
+    const sy=(wy-offsetY)*scaleY;
+    if(sx<-80||sx>window.innerWidth+80||sy<-40||sy>window.innerHeight+40)return;
+    const d=document.createElement('div');
+    d.className=cls;
+    d.textContent=text;
+    d.style.left=sx.toFixed(1)+'px';
+    d.style.top=sy.toFixed(1)+'px';
+    activeNodes.push(d);
+  };
+
+  Object.values(ents).forEach(e=>{
+    if(e.room!==me.room)return;
+    const cls='c-tag'+(e.id===myId?' me':e.isNpc?' npc':'');
+    addNode(cls,e.name,e.x,e.y-27);
+    if(e.bubbleT>0){
+      addNode('c-bubble',e.bubble,e.x,e.y-46);
+    }
+  });
+
+  if(me.room==='outside'){
+    logs.forEach(o=>{
+      if(!o.text)return;
+      const q=Math.min(o.t,1);
+      const x=o.x0+(FIRE_X-o.x0)*q;
+      const y=o.y0+(FIRE_Y-4-o.y0)*q-Math.sin(q*Math.PI)*34;
+      addNode('c-wood-txt',o.text,x,y-8);
+    });
+  }
+
+  labelLayer.replaceChildren(...activeNodes);
+}
+
+function renderTentInterior(){
+  // Latar gelap luar tenda
+  g.fillStyle='#0d0a1c';
+  g.fillRect(0,0,viewW,viewH);
+
+  const offX=(viewW-320)/2;
+  const offY=(viewH-200)/2;
+
+  g.save();
+  g.translate(offX|0,offY|0);
+
+  // Dinding kain tenda hangat
+  g.fillStyle='#5c2f34';
+  g.beginPath();
+  g.moveTo(160,12);g.lineTo(42,92);g.lineTo(42,184);g.lineTo(278,184);g.lineTo(278,92);
+  g.closePath();g.fill();
+
+  // Sisi dalam tenda lebih terang
+  g.fillStyle='#783f42';
+  g.beginPath();
+  g.moveTo(160,22);g.lineTo(58,94);g.lineTo(58,180);g.lineTo(262,180);g.lineTo(262,94);
+  g.closePath();g.fill();
+
+  // Tiang kayu penyangga tenda
+  g.fillStyle='#3d2318';
+  g.fillRect(158,22,4,68);
+  g.fillRect(58,92,204,3);
+
+  // Lantai alas tenda + karpet hangat
+  g.fillStyle='#3a2628';
+  g.fillRect(58,95,204,85);
+  g.fillStyle='#b86b52';
+  g.fillRect(78,108,164,58);
+  g.fillStyle='#ffd98a';
+  g.fillRect(82,112,156,2);
+  g.fillRect(82,160,156,2);
+
+  // Bantal-bantal duduk di dalam tenda
+  g.fillStyle='#e8728f';g.fillRect(102,126,18,12);
+  g.fillStyle='#b9a5e8';g.fillRect(198,144,18,12);
+  g.fillStyle='#ffb383';g.fillRect(112,148,18,12);
+
+  // Lentera hangat di tengah tenda
+  const pulse=Math.sin(fr/12)*2;
+  g.globalAlpha=0.14;g.fillStyle='#ffd98a';
+  g.fillRect(160-38-pulse,132-28-pulse,76+pulse*2,56+pulse*2);
+  g.globalAlpha=1;
+  g.fillStyle='#3d2318';g.fillRect(156,126,8,10);
+  g.fillStyle='#fff3b0';g.fillRect(157,128,6,6);
+
+  // Pintu keluar di bagian bawah tenda
+  g.fillStyle='#1b1532';
+  g.fillRect(142,174,36,8);
+
+  // Render karakter di dalam tenda
+  Object.values(ents).filter(e=>e.room==='tent').sort((a,b)=>a.y-b.y).forEach(e=>{
+    if(e!==me&&!e.isNpc){
+      const dx=e.tx-e.x,dy=e.ty-e.y;
+      e.mv=Math.abs(dx)+Math.abs(dy)>.8?e.mv+1:0;
+      e.x+=dx*.2;e.y+=dy*.2;
+    }
+    drawChar(g,e.ch,e.x,e.y,e.dir,e.mv?(e.mv>>3)&1:0);
+    if(activeTarget&&activeTarget.id===e.id){
+      const bob=Math.sin(fr/8)*2;
+      g.fillStyle='#ffd98a';
+      g.fillRect((e.x-2)|0,(e.y-32+bob)|0,4,4);
+    }
+  });
+
+  // Partikel peluk di dalam tenda
+  hearts=hearts.filter(h=>{
+    if(h.room!=='tent')return false;
+    h.y-=.5;h.x+=Math.sin(h.l/8)*.3;h.l--;
+    g.fillStyle='#ff7aa0';
+    const x=h.x|0,y=h.y|0;
+    g.fillRect(x,y,2,2);g.fillRect(x+4,y,2,2);
+    g.fillRect(x-1,y+2,8,2);g.fillRect(x+1,y+4,4,2);g.fillRect(x+2,y+6,2,1);
+    return h.l>0;
+  });
+
+  g.restore();
+
+  const rect=c.getBoundingClientRect();
+  syncSharpLabels(-offX,-offY,rect.width/viewW,rect.height/viewH);
+}
+
+function renderMountainOutside(){
+  const targetCamX=cl(me.x-viewW/2,0,Math.max(0,WORLD_W-viewW));
+  const targetCamY=cl(me.y-viewH/2,0,Math.max(0,WORLD_H-viewH));
+  camX+=(targetCamX-camX)*0.14;
+  camY+=(targetCamY-camY)*0.14;
+
+  g.save();
+  g.translate(-(camX|0),-(camY|0));
+
+  // 1. LANGIT MALAM PEGUNUNGAN
+  ['#100d29','#19143d','#251c52','#362666','#4f3378'].forEach((b,i)=>{
+    g.fillStyle=b;g.fillRect(0,i*44,WORLD_W,44);
+  });
+
+  // Bulan sabit & pendar cahaya bulan
+  g.fillStyle='rgba(255,243,209,0.08)';
+  g.fillRect(752,26,44,44);
+  g.fillStyle='#fff3d1';g.fillRect(764,38,20,20);
+  g.fillStyle='#19143d';g.fillRect(772,34,18,18);
+
+  // Bintang berkelap-kelip
+  stars.forEach(s=>{
+    g.fillStyle=(fr/20+s[2])%6<.4?'#7c7aa8':'#f4f0ff';
+    g.fillRect(s[0],s[1],1,1);
+  });
+
+  // Awan malam tipis bergerak pelan
+  g.fillStyle='rgba(185,165,232,0.12)';
+  clouds.forEach(clObj=>{
+    clObj.x+=clObj.spd;
+    if(clObj.x>WORLD_W+50)clObj.x=-60;
+    g.fillRect(clObj.x|0,clObj.y,clObj.w,5);
+    g.fillRect((clObj.x+6)|0,clObj.y-3,clObj.w-12,4);
+  });
+
+  // 2. BARISAN PUNCAK GUNUNG BERLAPIS + SALJU PUNCAK
+  g.fillStyle='#221b47';
+  g.beginPath();
+  farPeaks.forEach(([px,py],i)=>i?g.lineTo(px,py):g.moveTo(px,py));
+  g.closePath();g.fill();
+
+  // Puncak salju tipis di gunung tinggi
+  g.fillStyle='rgba(232,226,255,0.22)';
+  [[310,72],[560,64],[815,82]].forEach(([px,py])=>{
+    g.beginPath();g.moveTo(px,py);g.lineTo(px-18,py+22);g.lineTo(px+18,py+22);g.closePath();g.fill();
+  });
+
+  g.fillStyle='#181436';
+  g.beginPath();
+  nearPeaks.forEach(([px,py],i)=>i?g.lineTo(px,py):g.moveTo(px,py));
+  g.closePath();g.fill();
+
+  // 3. TANAH DATARAN TINGGI PEGUNUNGAN (Rumput, Jalan Setapak, & Tekstur)
+  g.fillStyle='#1f263b'; // Dasar rumput pegunungan malam
+  g.fillRect(0,218,WORLD_W,WORLD_H-218);
+  g.fillStyle='#2b3652'; // Garis cakrawala bukit
+  g.fillRect(0,218,WORLD_W,4);
+
+  // Tekstur variasi rumput lereng
+  g.fillStyle='#252f47';
+  g.fillRect(260,245,490,220);
+  g.fillStyle='#1b2236';
+  g.fillRect(40,250,210,115);
+  g.fillRect(760,330,230,190);
+
+  // Jalan setapak tanah menuju api unggun, dermaga, dan tenda
+  g.fillStyle='#3d313d';
+  g.fillRect(215,398,280,16); // Jalan dari dermaga ke api unggun
+  g.fillRect(FIRE_X-10,FIRE_Y+18,20,62); // Lingkar jalan api
+  g.fillRect(FIRE_X+25,340,255,14); // Jalan ke kanan
+  g.fillRect(782,290,16,64); // Jalan naik ke pintu tenda
+
+  // Semak rumput kecil tersebar di tanah
+  g.fillStyle='#334463';
+  tufts.forEach(([tx,ty])=>{
+    g.fillRect(tx,ty,3,2);
+    g.fillRect(tx+2,ty-1,2,2);
+  });
+
+  // Batu-batu pegunungan
+  rocks.forEach(([rx,ry])=>{
+    g.fillStyle='#454c66';g.fillRect(rx,ry,10,6);
+    g.fillStyle='#636c8c';g.fillRect(rx+1,ry,7,2);
+  });
+
+  // 4. TELAGA GUNUNG & DERMAGA KAYU (Kiri)
+  g.fillStyle='#142547';g.fillRect(0,375,220,185);
+  g.fillStyle='#223b6b';g.fillRect(0,375,220,3);
+  g.fillStyle='rgba(255,243,209,0.35)';
+  g.fillRect(62+Math.sin(fr/25)*4,420,18,2);
+  g.fillRect(88-Math.sin(fr/30)*3,455,12,2);
+  g.fillStyle='#6b4a2b';g.fillRect(105,390,114,34);
+  g.fillStyle='#8a6339';
+  for(let px=108;px<216;px+=8)g.fillRect(px,392,6,30);
+
+  // 5. POHON-POHON PINUS PEGUNUNGAN
+  pines.forEach(([px,py,ph])=>drawPine(px,py,ph));
+
+  // 6. TENDA KEMAH BISA DIMASUKI (Kanan Atas)
+  // Bayangan tenda
+  g.fillStyle='rgba(0,0,0,0.35)';
+  g.fillRect(746,276,88,6);
+  // Badan tenda
+  g.fillStyle='#c96a53';
+  g.beginPath();g.moveTo(790,224);g.lineTo(746,278);g.lineTo(834,278);g.closePath();g.fill();
+  g.fillStyle='#a8503e';
+  g.beginPath();g.moveTo(790,224);g.lineTo(816,278);g.lineTo(834,278);g.closePath();g.fill();
+  // Pintu tenda terbuka hangat
+  g.fillStyle='#ffd98a';
+  g.beginPath();g.moveTo(790,244);g.lineTo(776,278);g.lineTo(804,278);g.closePath();g.fill();
+  g.fillStyle='#3a1830';
+  g.beginPath();g.moveTo(790,248);g.lineTo(780,278);g.lineTo(800,278);g.closePath();g.fill();
+
+  // Papan petunjuk kayu di samping tenda
+  g.fillStyle='#6b4a2b';g.fillRect(700,256,34,18);
+  g.fillStyle='#8a6339';g.fillRect(702,258,30,14);g.fillRect(715,274,4,10);
+  g.fillStyle='#ffd98a';g.fillRect(706,262,22,2);g.fillRect(706,267,14,2);
+
+  // 7. API UNGGUN UTAMA + BATU DUDUK
+  heat+=(1-heat)*.004;
+  glow();
+  g.fillStyle='#4a4466';
+  [[-34,-10],[34,-10],[-38,14],[38,14],[-18,24],[18,24]].forEach(([ox,oy])=>{
+    g.fillRect(FIRE_X+ox-4,FIRE_Y+oy-2,8,4);
+  });
+  for(let i=0;i<2+heat*3;i++){
+    fp.push({x:FIRE_X+(Math.random()*16-8)*Math.min(heat,2.5)/1.5,y:FIRE_Y+2,vx:Math.random()*.6-.3,vy:-(.7+Math.random()*.9)*Math.min(heat,2),l:0});
+  }
+  fp=fp.filter(p=>(p.l+=1)<44);
+  fp.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    g.fillStyle=p.l<10?'#fff7c9':p.l<22?'#ffd98a':p.l<34?'#ff9552':'#c0364f';
+    g.fillRect(p.x|0,p.y|0,3,3);
+  });
+  g.fillStyle='#4a3320';g.fillRect(FIRE_X-18,FIRE_Y+2,36,6);
+  g.fillStyle='#5d4228';g.fillRect(FIRE_X-14,FIRE_Y,28,3);
+
+  // Kunang-kunang malam
+  ff.forEach(f=>{
+    f.x+=Math.sin(fr/50+f.p)*.35;f.y+=Math.cos(fr/40+f.p)*.25;
+    g.fillStyle=Math.sin(fr/15+f.p)>0?'#ffe48a':'#8a7a4a';
+    g.fillRect(f.x|0,f.y|0,1,1);
+  });
+
+  // 8. KARAKTER (PLAYER + NPC) URUT Y-DEPTH
+  Object.values(ents).filter(e=>e.room==='outside').sort((a,b)=>a.y-b.y).forEach(e=>{
+    if(e!==me&&!e.isNpc){
+      const dx=e.tx-e.x,dy=e.ty-e.y;
+      e.mv=Math.abs(dx)+Math.abs(dy)>.8?e.mv+1:0;
+      e.x+=dx*.2;e.y+=dy*.2;
+    }
+    drawChar(g,e.ch,e.x,e.y,e.dir,e.mv?(e.mv>>3)&1:0);
+    if(activeTarget&&activeTarget.id===e.id){
+      const bob=Math.sin(fr/8)*2;
+      g.fillStyle='#ffd98a';
+      g.fillRect((e.x-2)|0,(e.y-32+bob)|0,4,4);
+    }
+  });
+
+  // Kayu pikiran yang dilempar ke api
+  logs=logs.filter(o=>{
+    o.t+=1/55;
+    const q=Math.min(o.t,1);
+    const x=o.x0+(FIRE_X-o.x0)*q;
+    const y=o.y0+(FIRE_Y-4-o.y0)*q-Math.sin(q*Math.PI)*34;
+    g.fillStyle='#8a6339';g.fillRect((x-4)|0,y|0,8,4);
+    if(q>=1){heat=Math.min(heat+1.3,4);return false}
+    return true;
+  });
+
+  // Partikel peluk
+  hearts=hearts.filter(h=>{
+    if(h.room==='tent')return true;
+    h.y-=.5;h.x+=Math.sin(h.l/8)*.3;h.l--;
+    g.fillStyle='#ff7aa0';
+    const x=h.x|0,y=h.y|0;
+    g.fillRect(x,y,2,2);g.fillRect(x+4,y,2,2);
+    g.fillRect(x-1,y+2,8,2);g.fillRect(x+1,y+4,4,2);g.fillRect(x+2,y+6,2,1);
+    return h.l>0;
+  });
+
+  g.restore();
+
+  const rect=c.getBoundingClientRect();
+  syncSharpLabels(camX|0,camY|0,rect.width/viewW,rect.height/viewH);
 }
 
 function frame(now){
@@ -754,131 +1171,17 @@ function frame(now){
     stepNpcs();
     checkNearby();
 
-    const targetCamX=cl(me.x-viewW/2,0,Math.max(0,WORLD_W-viewW));
-    const targetCamY=cl(me.y-viewH/2,0,Math.max(0,WORLD_H-viewH));
-    camX+=(targetCamX-camX)*0.12;
-    camY+=(targetCamY-camY)*0.12;
+    Object.values(ents).forEach(e=>{if(e.bubbleT>0)e.bubbleT--});
 
     if(me.mv&&now-lastSend>100){
-      send('move',{id:myId,x:me.x|0,y:me.y|0,dir:me.dir});
+      send('move',{id:myId,room:me.room,x:me.x|0,y:me.y|0,dir:me.dir});
       lastSend=now;
     }
     if(wasMv&&!me.mv)track();
     wasMv=me.mv;
 
-    g.save();
-    g.translate(-(camX|0),-(camY|0));
-
-    ['#151130','#1e1742','#2b1f54','#3d2763','#59336e'].forEach((b,i)=>{
-      g.fillStyle=b;g.fillRect(0,i*42,WORLD_W,42);
-    });
-    g.fillStyle='#fff3d1';g.fillRect(720,38,20,20);
-    g.fillStyle='#1e1742';g.fillRect(728,34,18,18);
-
-    stars.forEach(s=>{
-      g.fillStyle=(fr/20+s[2])%6<.4?'#7c7aa8':'#e8e2ff';
-      g.fillRect(s[0],s[1],1,1);
-    });
-
-    g.fillStyle='#241c47';
-    for(let i=0;i<241;i++)g.fillRect(i*4,ridge[i],4,215-ridge[i]);
-    g.fillStyle='#191536';
-    for(let i=0;i<241;i++)g.fillRect(i*4,ridge[(i+30)%241]+32,4,90);
-    g.fillStyle='#120f29';
-    trees.forEach(t=>{
-      g.fillRect(t[0]+t[2]/2-1,t[1],2,8);
-      for(let k=0;k<4;k++)g.fillRect(t[0]+k*1.5|0,t[1]-t[2]+k*(t[2]/4)|0,t[2]-k*3,t[2]/4+1);
-    });
-
-    g.fillStyle='#21193d';g.fillRect(0,214,WORLD_W,WORLD_H-214);
-    g.fillStyle='#2b214f';g.fillRect(0,214,WORLD_W,3);
-
-    g.fillStyle='#172447';g.fillRect(0,365,215,175);
-    g.fillStyle='#213563';g.fillRect(0,365,215,3);
-    g.fillStyle='rgba(255,243,209,0.35)';
-    g.fillRect(60+Math.sin(fr/25)*4,410,18,2);
-    g.fillRect(85-Math.sin(fr/30)*3,445,12,2);
-    g.fillStyle='#6b4a2b';g.fillRect(105,382,108,34);
-    g.fillStyle='#8a6339';
-    for(let px=108;px<210;px+=8)g.fillRect(px,384,6,30);
-
-    g.fillStyle='#b4624e';
-    g.beginPath();g.moveTo(760,260);g.lineTo(725,305);g.lineTo(795,305);g.closePath();g.fill();
-    g.fillStyle='#3a1830';
-    g.beginPath();g.moveTo(760,275);g.lineTo(748,305);g.lineTo(772,305);g.closePath();g.fill();
-    g.fillStyle='#6b4a2b';g.fillRect(665,274,36,20);
-    g.fillStyle='#8a6339';g.fillRect(667,276,32,16);g.fillRect(681,294,4,12);
-    g.fillStyle='#ffd98a';g.fillRect(671,281,24,2);g.fillRect(671,286,16,2);
-
-    heat+=(1-heat)*.004;
-    glow();
-    g.fillStyle='#4a4466';
-    [[-34,-10],[34,-10],[-38,14],[38,14],[-18,24],[18,24]].forEach(([ox,oy])=>{
-      g.fillRect(FIRE_X+ox-4,FIRE_Y+oy-2,8,4);
-    });
-    for(let i=0;i<2+heat*3;i++){
-      fp.push({x:FIRE_X+(Math.random()*16-8)*Math.min(heat,2.5)/1.5,y:FIRE_Y+2,vx:Math.random()*.6-.3,vy:-(.7+Math.random()*.9)*Math.min(heat,2),l:0});
-    }
-    fp=fp.filter(p=>(p.l+=1)<44);
-    fp.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      g.fillStyle=p.l<10?'#fff7c9':p.l<22?'#ffd98a':p.l<34?'#ff9552':'#c0364f';
-      g.fillRect(p.x|0,p.y|0,3,3);
-    });
-    g.fillStyle='#4a3320';g.fillRect(FIRE_X-18,FIRE_Y+2,36,6);
-    g.fillStyle='#5d4228';g.fillRect(FIRE_X-14,FIRE_Y,28,3);
-
-    ff.forEach(f=>{
-      f.x+=Math.sin(fr/50+f.p)*.35;f.y+=Math.cos(fr/40+f.p)*.25;
-      g.fillStyle=Math.sin(fr/15+f.p)>0?'#ffe48a':'#8a7a4a';
-      g.fillRect(f.x|0,f.y|0,1,1);
-    });
-
-    Object.values(ents).sort((a,b)=>a.y-b.y).forEach(e=>{
-      if(e!==me&&!e.isNpc){
-        const dx=e.tx-e.x,dy=e.ty-e.y;
-        e.mv=Math.abs(dx)+Math.abs(dy)>.8?e.mv+1:0;
-        e.x+=dx*.2;e.y+=dy*.2;
-      }
-      drawChar(g,e.ch,e.x,e.y,e.dir,e.mv?(e.mv>>3)&1:0);
-      drawBubble(e.name,e.x,e.y-26,e.id===myId);
-
-      if(activeTarget&&activeTarget.id===e.id){
-        const bob=Math.sin(fr/8)*2;
-        g.fillStyle='#ffd98a';
-        g.fillRect((e.x-2)|0,(e.y-44+bob)|0,4,4);
-      }
-      if(e.bubbleT>0){
-        e.bubbleT--;
-        drawBubble(e.bubble,e.x,e.y-41,true);
-      }
-    });
-
-    logs=logs.filter(o=>{
-      o.t+=1/55;
-      const q=Math.min(o.t,1);
-      const x=o.x0+(FIRE_X-o.x0)*q;
-      const y=o.y0+(FIRE_Y-4-o.y0)*q-Math.sin(q*Math.PI)*34;
-      g.fillStyle='#8a6339';g.fillRect((x-4)|0,y|0,8,4);
-      if(o.text){
-        g.globalAlpha=1-q*0.6;
-        drawBubble(o.text,x,y-6,true);
-        g.globalAlpha=1;
-      }
-      if(q>=1){heat=Math.min(heat+1.3,4);return false}
-      return true;
-    });
-
-    hearts=hearts.filter(h=>{
-      h.y-=.5;h.x+=Math.sin(h.l/8)*.3;h.l--;
-      g.fillStyle='#ff7aa0';
-      const x=h.x|0,y=h.y|0;
-      g.fillRect(x,y,2,2);g.fillRect(x+4,y,2,2);
-      g.fillRect(x-1,y+2,8,2);g.fillRect(x+1,y+4,4,2);g.fillRect(x+2,y+6,2,1);
-      return h.l>0;
-    });
-
-    g.restore();
+    if(me.room==='tent')renderTentInterior();
+    else renderMountainOutside();
   }
   requestAnimationFrame(frame);
 }
@@ -888,7 +1191,8 @@ requestAnimationFrame(frame);
 let sb=null;const SB_URL='',SB_KEY='';
 function setPeers(){
   peers=Object.values(ents).filter(e=>!e.isNpc).length-1;
-  st.textContent=peers>0?(peers+1)+' pengunjung online':'Mode Offline · 3 NPC menemanimu';
+  const loc=me.room==='tent'?'Di Dalam Tenda':'Lereng Gunung';
+  st.textContent=peers>0?`${loc} · ${peers+1} online`:`${loc} · Mode Offline`;
 }
 if(SB_URL&&window.supabase){
   sb=supabase.createClient(SB_URL,SB_KEY);
@@ -898,13 +1202,20 @@ if(SB_URL&&window.supabase){
     for(const k in ps){
       if(k===myId)continue;
       const m=ps[k][0]||{};seen[k]=1;let e=ents[k];
-      if(!e)e=ents[k]={id:k,x:cl(m.x||FIRE_X,24,WORLD_W-24),y:cl(m.y||FIRE_Y+30,225,WORLD_H-24),dir:1,mv:0,bubble:'',bubbleT:0};
+      if(!e)e=ents[k]={id:k,room:m.room||'outside',x:cl(m.x||FIRE_X,24,WORLD_W-24),y:cl(m.y||FIRE_Y+30,72,WORLD_H-24),dir:1,mv:0,bubble:'',bubbleT:0};
+      e.room=m.room==='tent'?'tent':'outside';
       e.tx=e.tx??e.x;e.ty=e.ty??e.y;e.name=String(m.name||'Tamu').slice(0,12);e.ch=CH[m.ch]?m.ch:'kucing';
     }
     for(const k in ents)if(k!==myId&&!ents[k].isNpc&&!seen[k])delete ents[k];
     setPeers();
   })
-  .on('broadcast',{event:'move'},({payload:p})=>{const e=ents[p.id];if(e){e.tx=cl(p.x,24,WORLD_W-24);e.ty=cl(p.y,225,WORLD_H-24);e.dir=p.dir>0?1:-1}})
+  .on('broadcast',{event:'move'},({payload:p})=>{
+    const e=ents[p.id];
+    if(e){
+      if(p.room)e.room=p.room==='tent'?'tent':'outside';
+      e.tx=p.x;e.ty=p.y;e.dir=p.dir>0?1:-1;
+    }
+  })
   .on('broadcast',{event:'wood'},({payload:p})=>{if(ents[p.id])throwWood(ents[p.id])})
   .on('broadcast',{event:'hug'},({payload:p})=>{if(ents[p.id])hug(ents[p.id])})
   .on('broadcast',{event:'greet'},({payload:p})=>{const e=ents[p.id];if(e){e.bubble=String(p.msg||'Halo!').slice(0,24);e.bubbleT=180;hug(e)}})
